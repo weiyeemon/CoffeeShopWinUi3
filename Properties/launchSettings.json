@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CoffeeShopWinUi3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CoffeeShopWinUi3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

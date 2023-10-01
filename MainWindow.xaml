@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CoffeeShopWinUi3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:controls="using:CoffeeShopWinUi3.Controls"
     mc:Ignorable="d">
     <Grid >
         <Grid.RowDefinitions>
@@ -19,12 +20,7 @@
         </Grid.ColumnDefinitions>
         
         <!-- Header -->
-        <Grid Background="Orange" Grid.ColumnSpan="3" >
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Customer App" FontSize="30" VerticalAlignment="Center" Margin="5 0 0 5"/>
-            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Bottom" Margin="10 0 0 5" Foreground="Black"/>
-        </StackPanel>
-        </Grid>
+        <controls:HeaderControl Grid.ColumnSpan="3"/>
 
         <!-- Customer List -->
         <Grid Grid.Row="1" Width="300" x:Name="customerListGrid">

@@ -15,20 +15,27 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         
         <!-- Header -->
-        <StackPanel Orientation="Horizontal" Background="Orange" Grid.Row="0" Grid.ColumnSpan="3" >
+        <Grid Background="Orange" Grid.ColumnSpan="3" >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="Customer App" FontSize="30" VerticalAlignment="Center" Margin="5 0 0 5"/>
-            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Center" Margin="10 0 0 5" Foreground="Black"/>
+            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Bottom" Margin="10 0 0 5" Foreground="Black"/>
         </StackPanel>
-        
+        </Grid>
+
         <!-- Customer List -->
-        <StackPanel Grid.Row="1">
+        <Grid Grid.Row="1" Width="300" x:Name="customerListGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
                 <Button Margin="10">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Add Friend"/>
+                        <TextBlock Text="Add Friends"/>
                         <SymbolIcon Symbol="AddFriend" Margin="5 0 0 0"/>
                     </StackPanel>
                 </Button>
@@ -38,28 +45,28 @@
                         <SymbolIcon Symbol="Delete" Margin="5 0 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0 10 10 10">
-                    <SymbolIcon Symbol="Forward" Margin="5 0 0 0"/>
+                <Button Margin="0 10 10 10" Click="BtnMoveNavigation">
+                    <SymbolIcon x:Name="symbolIconMove" Symbol="Forward" Margin="5 0 0 0"/>
                 </Button>
             </StackPanel>
-            <StackPanel>
-                <ListView>
-                    <ListViewItem>John</ListViewItem>
-                    <ListViewItem>Helena</ListViewItem>
-                    <ListViewItem>Gera</ListViewItem>
-                </ListView>
-            </StackPanel>
-        </StackPanel>
-        
+            <ListView Grid.Row="1" 
+                      ScrollViewer.HorizontalScrollMode="Enabled"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <ListViewItem>John</ListViewItem>
+                <ListViewItem>Helena</ListViewItem>
+                <ListViewItem>Gera</ListViewItem>
+            </ListView>
+        </Grid>
+
         <!-- Customer Detail -->
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0 5 0">
             <TextBox Header="First Name"/>
             <TextBox Header="Last Name" Margin="0 10 0 0"/>
             <CheckBox Content="Is develpoer" Margin="5"/>
         </StackPanel>
         
         <!-- Status Bar -->
-        <Border Background="#444" Grid.Row="2" Grid.ColumnSpan="2">
+        <Border Background="#444" Grid.Row="2" Grid.ColumnSpan="3">
             <TextBlock Text="(c)Wire Brain Coffee Shop" Margin="5" Foreground="Wheat"/>
         </Border>
     </Grid>

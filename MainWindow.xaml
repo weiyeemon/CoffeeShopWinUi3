@@ -6,8 +6,61 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal" Background="Orange" Grid.Row="0" Grid.ColumnSpan="3" >
+            <TextBlock Text="Customer App" FontSize="30" VerticalAlignment="Center" Margin="5 0 0 5"/>
+            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Center" Margin="10 0 0 5" Foreground="Black"/>
+        </StackPanel>
+        
+        <!-- Customer List -->
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Add Friend"/>
+                        <SymbolIcon Symbol="AddFriend" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="0 10 10 10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Delete"/>
+                        <SymbolIcon Symbol="Delete" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="0 10 10 10">
+                    <SymbolIcon Symbol="Forward" Margin="5 0 0 0"/>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <ListView>
+                    <ListViewItem>John</ListViewItem>
+                    <ListViewItem>Helena</ListViewItem>
+                    <ListViewItem>Gera</ListViewItem>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+        
+        <!-- Customer Detail -->
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox Header="First Name"/>
+            <TextBox Header="Last Name" Margin="0 10 0 0"/>
+            <CheckBox Content="Is develpoer" Margin="5"/>
+        </StackPanel>
+        
+        <!-- Status Bar -->
+        <Border Background="#444" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="(c)Wire Brain Coffee Shop" Margin="5" Foreground="Wheat"/>
+        </Border>
+    </Grid>
 </Window>

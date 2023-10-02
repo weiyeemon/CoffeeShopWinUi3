@@ -1,5 +1,7 @@
-﻿using CoffeeShopWinUi3.Data;
+﻿using CoffeeShopWinUi3.Command;
+using CoffeeShopWinUi3.Data;
 using CoffeeShopWinUi3.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -15,7 +17,12 @@ namespace CoffeeShopWinUi3.ViewModel
         public MainViewModel(ICustomerDataProvider customerDataProvider)
         {
             _customerDataProvider = customerDataProvider;
+            AddCommand = new DelegateCommand(Add);
+            DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
+        
+        public DelegateCommand AddCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
         public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
         public CustomerItemViewModel? SelectedCustomer
         {
@@ -27,6 +34,7 @@ namespace CoffeeShopWinUi3.ViewModel
                     _selectedCustomer = value;
                     RaisedPropertyChanged();
                     RaisedPropertyChanged(nameof(IsCustomerSelected));
+                    DeleteCommand.RaiseCanExecuteChange();
                 }
             }
         }
@@ -49,5 +57,23 @@ namespace CoffeeShopWinUi3.ViewModel
                 }
             }
         }
+
+        private void Add(object? parameter)
+        {
+            var customer = new Customer { FirstName = "New" };
+            var viewModel = new CustomerItemViewModel(customer);
+            Customers.Add(viewModel);
+            SelectedCustomer = viewModel;
+        }
+        private void Delete(object? parameter)
+        {
+            if(SelectedCustomer is not null)
+            {
+                Customers.Remove(SelectedCustomer);
+                SelectedCustomer=null;
+            }
+        }
+        private bool CanDelete(object? parameter) => SelectedCustomer is not null;
+
     }
 }

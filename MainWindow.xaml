@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:CoffeeShopWinUi3.Controls"
     mc:Ignorable="d">
-    <Grid >
+    <Grid x:Name="root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -18,7 +18,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        
+
         <!-- Header -->
         <controls:HeaderControl Grid.ColumnSpan="3"/>
 
@@ -45,25 +45,32 @@
                     <SymbolIcon x:Name="symbolIconMove" Symbol="Forward" Margin="5 0 0 0"/>
                 </Button>
             </StackPanel>
-            <ListView Grid.Row="1" 
+            <ListView x:Name="customerListView" Grid.Row="1" 
+                      ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}"
+                      SelectedItem="{x:Bind ViewModel.SelectedCustomer, Mode=TwoWay}"
+                      DisplayMemberPath="FirstName" 
                       ScrollViewer.HorizontalScrollMode="Enabled"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <ListViewItem>John</ListViewItem>
-                <ListViewItem>Helena</ListViewItem>
-                <ListViewItem>Gera</ListViewItem>
             </ListView>
         </Grid>
 
         <!-- Customer Detail -->
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0 5 0">
-            <TextBox Header="First Name"/>
-            <TextBox Header="Last Name" Margin="0 10 0 0"/>
-            <CheckBox Content="Is develpoer" Margin="5"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0 5 0"
+                    Visibility="{x:Bind ViewModel.IsCustomerSelected, Mode=OneWay}">
+            <TextBox Header="First Name" 
+                     Text="{x:Bind ViewModel.SelectedCustomer.FirstName, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Header="Last Name" Margin="0 10 0 0"
+                     Text="{x:Bind ViewModel.SelectedCustomer.LastName, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   />
+            <CheckBox Content="Is develpoer" Margin="5"
+                     IsChecked="{x:Bind ViewModel.SelectedCustomer.IsDeveloper, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-        
+
         <!-- Status Bar -->
-        <Border Background="#444" Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Background="#444" Grid.Row="2" Grid.ColumnSpan="3">
             <TextBlock Text="(c)Wire Brain Coffee Shop" Margin="5" Foreground="Wheat"/>
-        </Border>
+        </Grid>
     </Grid>
 </Window>

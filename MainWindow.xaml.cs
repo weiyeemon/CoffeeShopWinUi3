@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using CoffeeShopWinUi3.Data;
+using CoffeeShopWinUi3.ViewModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 namespace CoffeeShopWinUi3
@@ -8,8 +10,16 @@ namespace CoffeeShopWinUi3
         public MainWindow()
         {
             this.InitializeComponent();
+            Title = "Customer App";
+            ViewModel = new MainViewModel(new CustomerDataProvider());
+            root.Loaded += Root_Loaded;
         }
 
+        public MainViewModel ViewModel { get; }
+        private async void Root_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.LoadAsync();
+        }
         private void BtnMoveNavigation(object sender, RoutedEventArgs e)
         {
             //int col = (int)customerListGrid.GetValue(Grid.ColumnProperty);

@@ -6,11 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="Orange" >
+    
+    <Grid Background="{StaticResource HearderBackgroundBrush }" >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Customer App" FontSize="30" VerticalAlignment="Center" Margin="5 0 0 5"/>
-            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Bottom" Margin="10 0 0 5" Foreground="Black"/>
+            <TextBlock Text="Customer App" FontSize="30" VerticalAlignment="Center" Margin="5 0 0 5"
+                       Foreground="{StaticResource HearderForegroundBrush}"/>
+            <TextBlock Text="Version1.0" FontSize="16" VerticalAlignment="Bottom" Margin="10 0 0 5" 
+                       Foreground="Black"/>
         </StackPanel>
     </Grid>
+    
 </UserControl>

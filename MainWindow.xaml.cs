@@ -29,5 +29,11 @@ namespace CoffeeShopWinUi3
             Grid.SetColumn(customerListGrid, moveCol);
             symbolIconMove.Symbol = moveCol == 0 ? Symbol.Forward : Symbol.Back;
         }
+
+        private void BtnToggle_Click(object sender, RoutedEventArgs e)
+        {
+            root.RequestedTheme = root.RequestedTheme == ElementTheme.Dark ?
+                ElementTheme.Light : ElementTheme.Dark;
+        }
     }
 }

@@ -7,11 +7,11 @@ namespace CoffeeShopWinUi3
 {
     public sealed partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainViewModel viewModel)
         {
             this.InitializeComponent();
             Title = "Customer App";
-            ViewModel = new MainViewModel(new CustomerDataProvider());
+            ViewModel = viewModel;
             root.Loaded += Root_Loaded;
         }
 
